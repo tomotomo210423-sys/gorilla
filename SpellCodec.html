@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPELL CODEC</title>
+
+<!-- ═══════════════════════════════════════════════════════
+     PWA / Apple Touch Icon — インラインSVG Base64埋め込み
+     外部ファイル不要。ホーム画面追加時にこのアイコンが使われる
+     ═══════════════════════════════════════════════════════ -->
+
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWEwYTNlIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA0MDIwYSIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0ib3JiIiBjeD0iNDAlIiBjeT0iMzUlIiByPSI1OCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZThkNWZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNDAlIiBzdG9wLWNvbG9yPSIjOWI0ZGZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzJhMDA2MCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iaGkiIGN4PSIzMiUiIGN5PSIyOCUiIHI9IjQyJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMC43Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnbG93IiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYTg1NWY3IiBzdG9wLW9wYWNpdHk9IjAuNDUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYTg1NWY3IiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9InVybCgjYmcpIi8+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODgiIGZpbGw9InVybCgjZ2xvdykiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI3NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2IzZmY1IiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC41Ii8+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iNjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2E4NTVmNyIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuMyIvPgogIDxwb2x5Z29uIHBvaW50cz0iOTAsMTQgMTI0LDI2IDE1NCw1NiAxNjYsOTAgMTU0LDEyNCAxMjQsMTU0IDkwLDE2NiA1NiwxNTQgMjYsMTI0IDE0LDkwIDI2LDU2IDU2LDI2IgogICAgICAgICAgIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzdiM2ZmNSIgc3Ryb2tlLXdpZHRoPSIwLjkiIG9wYWNpdHk9IjAuMzgiLz4KICA8bGluZSB4MT0iOTAiIHkxPSIxNCIgeDI9IjkwIiB5Mj0iMTY2IiBzdHJva2U9IiM2ZDI4ZDkiIHN0cm9rZS13aWR0aD0iMC42IiBvcGFjaXR5PSIwLjIyIi8+CiAgPGxpbmUgeDE9IjE0IiB5MT0iOTAiIHgyPSIxNjYiIHkyPSI5MCIgc3Ryb2tlPSIjNmQyOGQ5IiBzdHJva2Utd2lkdGg9IjAuNiIgb3BhY2l0eT0iMC4yMiIvPgogIDxsaW5lIHgxPSIyOCIgeTE9IjI4IiB4Mj0iMTUyIiB5Mj0iMTUyIiBzdHJva2U9IiM2ZDI4ZDkiIHN0cm9rZS13aWR0aD0iMC42IiBvcGFjaXR5PSIwLjE4Ii8+CiAgPGxpbmUgeDE9IjE1MiIgeTE9IjI4IiB4Mj0iMjgiIHkyPSIxNTIiIHN0cm9rZT0iIzZkMjhkOSIgc3Ryb2tlLXdpZHRoPSIwLjYiIG9wYWNpdHk9IjAuMTgiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGI1Y2Y2IiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4zOCIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjE0MiIgcng9IjI0IiByeT0iNS41IiBmaWxsPSIjMWEwMDQwIiBvcGFjaXR5PSIwLjY1Ii8+CiAgPHBhdGggZD0iTTcwIDEzOCBROTAgMTQ1IDExMCAxMzggTDEwNyAxMzAgUTkwIDEzNyA3MyAxMzBaIiBmaWxsPSIjM2QxMDgwIi8+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI4OCIgcj0iNDAiIGZpbGw9InVybCgjb3JiKSIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iODgiIHI9IjQwIiBmaWxsPSJ1cmwoI2hpKSIvPgogIDxwYXRoIGQ9Ik03NyA3NyBROTAgNjUgMTAzIDc3IFExMTUgODggMTAzIDk5IFE5MCAxMTEgNzcgOTkgUTY1IDg4IDc3IDc3WiIKICAgICAgICBmaWxsPSJub25lIiBzdHJva2U9IiNjMDg0ZmMiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjQyIi8+CiAgPHBhdGggZD0iTTg0IDg0IFE5MCA3NiA5NiA4NCBRMTA0IDkwIDk2IDk2IFE5MCAxMDQgODQgOTYgUTc2IDkwIDg0IDg0WiIKICAgICAgICBmaWxsPSJub25lIiBzdHJva2U9IiNlOGQ1ZmYiIHN0cm9rZS13aWR0aD0iMS4xIiBvcGFjaXR5PSIwLjU4Ii8+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iMy44IiBmaWxsPSIjYzA4NGZjIiBvcGFjaXR5PSIwLjgyIi8+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iMS42IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjkiLz4KICA8Y2lyY2xlIGN4PSI3NSIgY3k9IjczIiByPSIzLjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuOTUiLz4KICA8bGluZSB4MT0iNzUiIHkxPSI2NyIgeDI9Ijc1IiB5Mj0iNzkiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjQ4Ii8+CiAgPGxpbmUgeDE9IjY5IiB5MT0iNzMiIHgyPSI4MSIgeTI9IjczIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgogIDxlbGxpcHNlIGN4PSI3MyIgY3k9IjcxIiByeD0iMTEiIHJ5PSI2LjUiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjEzIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjIsNzMsNzEpIi8+CiAgPHBhdGggZD0iTTIyIDIyIEwyMy41IDI3LjUgTDI5IDI5IEwyMy41IDMwLjUgTDIyIDM2IEwyMC41IDMwLjUgTDE1IDI5IEwyMC41IDI3LjVaIiBmaWxsPSIjZjVjODQyIiBvcGFjaXR5PSIwLjcyIi8+CiAgPHBhdGggZD0iTTE1MSAyMiBMMTUyLjUgMjcuNSBMMTU4IDI5IEwxNTIuNSAzMC41IEwxNTEgMzYgTDE0OS41IDMwLjUgTDE0NCAyOSBMMTQ5LjUgMjcuNVoiIGZpbGw9IiNmNWM4NDIiIG9wYWNpdHk9IjAuNzIiLz4KICA8cGF0aCBkPSJNMjIgMTQ0IEwyMy41IDE0OS41IEwyOSAxNTEgTDIzLjUgMTUyLjUgTDIyIDE1OCBMMjAuNSAxNTIuNSBMMTUgMTUxIEwyMC41IDE0OS41WiIgZmlsbD0iIzIyZDNlZSIgb3BhY2l0eT0iMC42MiIvPgogIDxwYXRoIGQ9Ik0xNTEgMTQ0IEwxNTIuNSAxNDkuNSBMMTU4IDE1MSBMMTUyLjUgMTUyLjUgTDE1MSAxNTggTDE0OS41IDE1Mi41IEwxNDQgMTUxIEwxNDkuNSAxNDkuNVoiIGZpbGw9IiMyMmQzZWUiIG9wYWNpdHk9IjAuNjIiLz4KPC9zdmc+">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWEwYTNlIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA0MDIwYSIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0ib3JiIiBjeD0iNDAlIiBjeT0iMzUlIiByPSI1OCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZThkNWZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNDAlIiBzdG9wLWNvbG9yPSIjOWI0ZGZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzJhMDA2MCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iaGkiIGN4PSIzMiUiIGN5PSIyOCUiIHI9IjQyJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMC43Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnbG93IiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYTg1NWY3IiBzdG9wLW9wYWNpdHk9IjAuNDUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYTg1NWY3IiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9InVybCgjYmcpIi8+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODgiIGZpbGw9InVybCgjZ2xvdykiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI3NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2IzZmY1IiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC41Ii8+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iNjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2E4NTVmNyIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuMyIvPgogIDxwb2x5Z29uIHBvaW50cz0iOTAsMTQgMTI0LDI2IDE1NCw1NiAxNjYsOTAgMTU0LDEyNCAxMjQsMTU0IDkwLDE2NiA1NiwxNTQgMjYsMTI0IDE0LDkwIDI2LDU2IDU2LDI2IgogICAgICAgICAgIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzdiM2ZmNSIgc3Ryb2tlLXdpZHRoPSIwLjkiIG9wYWNpdHk9IjAuMzgiLz4KICA8bGluZSB4MT0iOTAiIHkxPSIxNCIgeDI9IjkwIiB5Mj0iMTY2IiBzdHJva2U9IiM2ZDI4ZDkiIHN0cm9rZS13aWR0aD0iMC42IiBvcGFjaXR5PSIwLjIyIi8+CiAgPGxpbmUgeDE9IjE0IiB5MT0iOTAiIHgyPSIxNjYiIHkyPSI5MCIgc3Ryb2tlPSIjNmQyOGQ5IiBzdHJva2Utd2lkdGg9IjAuNiIgb3BhY2l0eT0iMC4yMiIvPgogIDxsaW5lIHgxPSIyOCIgeTE9IjI4IiB4Mj0iMTUyIiB5Mj0iMTUyIiBzdHJva2U9IiM2ZDI4ZDkiIHN0cm9rZS13aWR0aD0iMC42IiBvcGFjaXR5PSIwLjE4Ii8+CiAgPGxpbmUgeDE9IjE1MiIgeTE9IjI4IiB4Mj0iMjgiIHkyPSIxNTIiIHN0cm9rZT0iIzZkMjhkOSIgc3Ryb2tlLXdpZHRoPSIwLjYiIG9wYWNpdHk9IjAuMTgiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGI1Y2Y2IiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4zOCIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjE0MiIgcng9IjI0IiByeT0iNS41IiBmaWxsPSIjMWEwMDQwIiBvcGFjaXR5PSIwLjY1Ii8+CiAgPHBhdGggZD0iTTcwIDEzOCBROTAgMTQ1IDExMCAxMzggTDEwNyAxMzAgUTkwIDEzNyA3MyAxMzBaIiBmaWxsPSIjM2QxMDgwIi8+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI4OCIgcj0iNDAiIGZpbGw9InVybCgjb3JiKSIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iODgiIHI9IjQwIiBmaWxsPSJ1cmwoI2hpKSIvPgogIDxwYXRoIGQ9Ik03NyA3NyBROTAgNjUgMTAzIDc3IFExMTUgODggMTAzIDk5IFE5MCAxMTEgNzcgOTkgUTY1IDg4IDc3IDc3WiIKICAgICAgICBmaWxsPSJub25lIiBzdHJva2U9IiNjMDg0ZmMiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjQyIi8+CiAgPHBhdGggZD0iTTg0IDg0IFE5MCA3NiA5NiA4NCBRMTA0IDkwIDk2IDk2IFE5MCAxMDQgODQgOTYgUTc2IDkwIDg0IDg0WiIKICAgICAgICBmaWxsPSJub25lIiBzdHJva2U9IiNlOGQ1ZmYiIHN0cm9rZS13aWR0aD0iMS4xIiBvcGFjaXR5PSIwLjU4Ii8+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iMy44IiBmaWxsPSIjYzA4NGZjIiBvcGFjaXR5PSIwLjgyIi8+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iMS42IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjkiLz4KICA8Y2lyY2xlIGN4PSI3NSIgY3k9IjczIiByPSIzLjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuOTUiLz4KICA8bGluZSB4MT0iNzUiIHkxPSI2NyIgeDI9Ijc1IiB5Mj0iNzkiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjQ4Ii8+CiAgPGxpbmUgeDE9IjY5IiB5MT0iNzMiIHgyPSI4MSIgeTI9IjczIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgogIDxlbGxpcHNlIGN4PSI3MyIgY3k9IjcxIiByeD0iMTEiIHJ5PSI2LjUiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjEzIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjIsNzMsNzEpIi8+CiAgPHBhdGggZD0iTTIyIDIyIEwyMy41IDI3LjUgTDI5IDI5IEwyMy41IDMwLjUgTDIyIDM2IEwyMC41IDMwLjUgTDE1IDI5IEwyMC41IDI3LjVaIiBmaWxsPSIjZjVjODQyIiBvcGFjaXR5PSIwLjcyIi8+CiAgPHBhdGggZD0iTTE1MSAyMiBMMTUyLjUgMjcuNSBMMTU4IDI5IEwxNTIuNSAzMC41IEwxNTEgMzYgTDE0OS41IDMwLjUgTDE0NCAyOSBMMTQ5LjUgMjcuNVoiIGZpbGw9IiNmNWM4NDIiIG9wYWNpdHk9IjAuNzIiLz4KICA8cGF0aCBkPSJNMjIgMTQ0IEwyMy41IDE0OS41IEwyOSAxNTEgTDIzLjUgMTUyLjUgTDIyIDE1OCBMMjAuNSAxNTIuNSBMMTUgMTUxIEwyMC41IDE0OS41WiIgZmlsbD0iIzIyZDNlZSIgb3BhY2l0eT0iMC42MiIvPgogIDxwYXRoIGQ9Ik0xNTEgMTQ0IEwxNTIuNSAxNDkuNSBMMTU4IDE1MSBMMTUyLjUgMTUyLjUgTDE1MSAxNTggTDE0OS41IDE1Mi41IEwxNDQgMTUxIEwxNDkuNSAxNDkuNVoiIGZpbGw9IiMyMmQzZWUiIG9wYWNpdHk9IjAuNjIiLz4KPC9zdmc+">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SPELL CODEC">
+<meta name="theme-color" content="#04020a">
+
+<!-- ═══════════════════════════════════════════════════════
+     SVG ICON LIBRARY — すべてインライン、外部依存ゼロ
+     use要素で  <use href="#ico-XXX"/>  として参照する
+     ═══════════════════════════════════════════════════════ -->
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+
+  <!-- ORB: 水晶玉シジル（ヘッダロゴ） -->
+
+  <symbol id="ico-orb" viewBox="0 0 64 64">
+    <defs>
+      <radialGradient id="g-orb" cx="38%" cy="34%" r="58%">
+        <stop offset="0%"   stop-color="#e8d5ff"/>
+        <stop offset="45%"  stop-color="#9b4dff"/>
+        <stop offset="100%" stop-color="#2a0060"/>
+      </radialGradient>
+      <radialGradient id="g-orb-hi" cx="30%" cy="28%" r="40%">
+        <stop offset="0%"   stop-color="#fff" stop-opacity=".65"/>
+        <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="f-orb-glow">
+        <feGaussianBlur stdDeviation="2" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <!-- 台座 -->
+    <ellipse cx="32" cy="57" rx="14" ry="3.5" fill="#1a0040" opacity=".55"/>
+    <path d="M22 54 Q32 59 42 54 L40 50 Q32 55 24 50Z" fill="#3d1080"/>
+    <!-- 球体本体 -->
+    <circle cx="32" cy="30" r="22" fill="url(#g-orb)" filter="url(#f-orb-glow)"/>
+    <circle cx="32" cy="30" r="22" fill="url(#g-orb-hi)"/>
+    <!-- 内側の渦符文 -->
+    <path d="M26 23 Q32 16 38 23 Q45 30 38 37 Q32 44 26 37 Q19 30 26 23Z"
+          fill="none" stroke="#c084fc" stroke-width="1.1" opacity=".45"/>
+    <path d="M29 26 Q32 21 35 26 Q39 30 35 34 Q32 39 29 34 Q25 30 29 26Z"
+          fill="none" stroke="#e8d5ff" stroke-width=".9" opacity=".6"/>
+    <!-- 中心点 -->
+    <circle cx="32" cy="30" r="2" fill="#c084fc" opacity=".8"/>
+    <!-- 光点 -->
+    <circle cx="26" cy="21" r="1.6" fill="#fff" opacity=".95"/>
+    <line x1="26" y1="18" x2="26" y2="24" stroke="#fff" stroke-width=".7" opacity=".55"/>
+    <line x1="23" y1="21" x2="29" y2="21" stroke="#fff" stroke-width=".7" opacity=".55"/>
+    <!-- ハイライト -->
+    <ellipse cx="25" cy="21" rx="7" ry="4.5" fill="white" opacity=".16" transform="rotate(-22,25,21)"/>
+  </symbol>
+
+  <!-- SPARK: スパークル（詠唱ボタン） -->
+
+  <symbol id="ico-spark" viewBox="0 0 20 20">
+    <path d="M10 1 L11.3 8.7 L19 10 L11.3 11.3 L10 19 L8.7 11.3 L1 10 L8.7 8.7Z"
+          fill="currentColor"/>
+    <path d="M4 3 L4.6 6.4 L8 7 L4.6 7.6 L4 11 L3.4 7.6 L0 7 L3.4 6.4Z"
+          fill="currentColor" opacity=".55" transform="translate(11.5,0.5) scale(.55)"/>
+    <path d="M4 3 L4.6 6.4 L8 7 L4.6 7.6 L4 11 L3.4 7.6 L0 7 L3.4 6.4Z"
+          fill="currentColor" opacity=".38" transform="translate(1,11.5) scale(.42)"/>
+  </symbol>
+
+  <!-- UNLOCK: 解錠（解呪ボタン） -->
+
+  <symbol id="ico-unlock" viewBox="0 0 20 20">
+    <rect x="3" y="9" width="14" height="10" rx="2.2" fill="currentColor"/>
+    <path d="M6.5 9 L6.5 5.5 Q6.5 1.5 10.5 1.5 Q14.5 1.5 14.5 5.5"
+          fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="10" cy="14.5" r="2" fill="#0a0518"/>
+    <rect x="9.3" y="14.5" width="1.4" height="2.8" rx=".7" fill="#0a0518"/>
+  </symbol>
+
+  <!-- EYE: 魔法の眼（鑑定タブ） -->
+
+  <symbol id="ico-eye" viewBox="0 0 20 20">
+    <path d="M1 10 Q5 3.5 10 3.5 Q15 3.5 19 10 Q15 16.5 10 16.5 Q5 16.5 1 10Z"
+          fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="10" cy="10" r="3.5" fill="currentColor"/>
+    <circle cx="10" cy="10" r="1.5" fill="#0a0518"/>
+    <circle cx="8.7" cy="8.7" r=".8" fill="currentColor" opacity=".75"/>
+  </symbol>
+
+  <!-- SCROLL: 巻物（ファイル選択） -->
+
+  <symbol id="ico-scroll" viewBox="0 0 20 20">
+    <rect x="4.5" y="2.5" width="11" height="15" rx="1.5" fill="currentColor" opacity=".85"/>
+    <ellipse cx="4.5" cy="10" rx="2.2" ry="7.5" fill="currentColor"/>
+    <ellipse cx="4.5" cy="10" rx="1"   ry="6.5" fill="#0a0518" opacity=".45"/>
+    <line x1="7.5" y1="6.5" x2="14"   y2="6.5" stroke="#0a0518" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+    <line x1="7.5" y1="9"   x2="14"   y2="9"   stroke="#0a0518" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+    <line x1="7.5" y1="11.5" x2="12"  y2="11.5" stroke="#0a0518" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+  </symbol>
+
+  <!-- COPY: コピー -->
+
+  <symbol id="ico-copy" viewBox="0 0 20 20">
+    <rect x="7" y="4" width="10" height="13" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="3" y="1" width="10" height="13" rx="1.8" fill="currentColor" opacity=".85"/>
+    <line x1="5.5" y1="5.5" x2="10.5" y2="5.5" stroke="#0a0518" stroke-width="1.1" stroke-linecap="round" opacity=".5"/>
+    <line x1="5.5" y1="8"   x2="10.5" y2="8"   stroke="#0a0518" stroke-width="1.1" stroke-linecap="round" opacity=".5"/>
+    <line x1="5.5" y1="10.5" x2="9"   y2="10.5" stroke="#0a0518" stroke-width="1.1" stroke-linecap="round" opacity=".5"/>
+  </symbol>
+
+  <!-- SAVE: 保存（ダウンロード） -->
+
+  <symbol id="ico-save" viewBox="0 0 20 20">
+    <rect x="2" y="2" width="16" height="16" rx="2.5" fill="currentColor" opacity=".85"/>
+    <rect x="5" y="2" width="7" height="6" rx="1" fill="#0a0518" opacity=".4"/>
+    <rect x="11.5" y="3" width="1.5" height="4" rx=".75" fill="currentColor" opacity=".7"/>
+    <path d="M5 13 L10 18 L15 13" fill="none" stroke="#0a0518" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+    <line x1="10" y1="10" x2="10" y2="17.5" stroke="#0a0518" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+  </symbol>
+
+  <!-- INSPECT: 虫眼鏡＋符文（鑑定ボタン） -->
+
+  <symbol id="ico-inspect" viewBox="0 0 20 20">
+    <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="12.5" y1="12.5" x2="18" y2="18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M6 7.5 Q8.5 5.5 11 7.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+  </symbol>
+
+  <!-- FILE: ファイルアイコン（汎用） -->
+
+  <symbol id="ico-file" viewBox="0 0 20 20">
+    <path d="M4 2 L12 2 L17 7 L17 18 Q17 19 16 19 L4 19 Q3 19 3 18 L3 3 Q3 2 4 2Z"
+          fill="currentColor" opacity=".85"/>
+    <path d="M12 2 L12 7 L17 7Z" fill="#0a0518" opacity=".35"/>
+    <line x1="6.5" y1="10" x2="13.5" y2="10" stroke="#0a0518" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+    <line x1="6.5" y1="13" x2="13.5" y2="13" stroke="#0a0518" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+    <line x1="6.5" y1="16" x2="10.5" y2="16" stroke="#0a0518" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+  </symbol>
+
+  <!-- IMAGE: 画像ファイル -->
+
+  <symbol id="ico-image" viewBox="0 0 20 20">
+    <rect x="2" y="3" width="16" height="14" rx="2" fill="currentColor" opacity=".8"/>
+    <circle cx="7" cy="7.5" r="1.8" fill="#0a0518" opacity=".4"/>
+    <path d="M2 14 L6 10 L9.5 13.5 L13 10 L18 14 L18 17 L2 17Z"
+          fill="#0a0518" opacity=".35"/>
+  </symbol>
+
+  <!-- VIDEO: 動画ファイル -->
+
+  <symbol id="ico-video" viewBox="0 0 20 20">
+    <rect x="1" y="3.5" width="13" height="13" rx="2" fill="currentColor" opacity=".8"/>
+    <path d="M14 8 L19 5.5 L19 14.5 L14 12Z" fill="currentColor" opacity=".7"/>
+    <path d="M6.5 7.5 L6.5 12.5 L11 10Z" fill="#0a0518" opacity=".4"/>
+  </symbol>
+
+  <!-- MUSIC: 音楽ファイル -->
+
+  <symbol id="ico-music" viewBox="0 0 20 20">
+    <path d="M8 15 Q8 18 5.5 18 Q3 18 3 15.5 Q3 13 5.5 13 Q7 13 8 14Z" fill="currentColor"/>
+    <path d="M16 13 Q16 16 13.5 16 Q11 16 11 13.5 Q11 11 13.5 11 Q15 11 16 12Z" fill="currentColor" opacity=".8"/>
+    <path d="M8 14 L8 4 L16 2 L16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="8" y1="7" x2="16" y2="5.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+  </symbol>
+
+  <!-- PDF: PDFファイル -->
+
+  <symbol id="ico-pdf" viewBox="0 0 20 20">
+    <path d="M4 1 L13 1 L17 5 L17 19 L4 19Z" fill="currentColor" opacity=".75"/>
+    <path d="M13 1 L13 5 L17 5Z" fill="#0a0518" opacity=".3"/>
+    <rect x="3" y="9" width="9" height="7" rx="1.2" fill="#c84040" opacity=".9"/>
+    <text x="7.5" y="15" font-family="Georgia,serif" font-size="4.5" font-weight="bold"
+          fill="white" text-anchor="middle">PDF</text>
+  </symbol>
+
+  <!-- ARCHIVE: ZIPファイル -->
+
+  <symbol id="ico-archive" viewBox="0 0 20 20">
+    <rect x="3" y="2" width="14" height="16" rx="2" fill="currentColor" opacity=".8"/>
+    <rect x="7.5" y="2" width="5" height="16" fill="#0a0518" opacity=".15"/>
+    <line x1="10" y1="3"  x2="10" y2="6"  stroke="#0a0518" stroke-width="2.5" stroke-dasharray="2,1.5" opacity=".5"/>
+    <line x1="10" y1="8"  x2="10" y2="11" stroke="#0a0518" stroke-width="2.5" stroke-dasharray="2,1.5" opacity=".5"/>
+    <line x1="10" y1="13" x2="10" y2="16" stroke="#0a0518" stroke-width="2.5" stroke-dasharray="2,1.5" opacity=".5"/>
+    <circle cx="10" cy="7" r="2" fill="currentColor"/>
+  </symbol>
+
+  <!-- TEXT: テキストファイル -->
+
+  <symbol id="ico-text" viewBox="0 0 20 20">
+    <rect x="2.5" y="1.5" width="15" height="17" rx="2" fill="currentColor" opacity=".8"/>
+    <line x1="5" y1="6"  x2="15" y2="6"  stroke="#0a0518" stroke-width="1.3" stroke-linecap="round" opacity=".5"/>
+    <line x1="5" y1="9"  x2="15" y2="9"  stroke="#0a0518" stroke-width="1.3" stroke-linecap="round" opacity=".5"/>
+    <line x1="5" y1="12" x2="15" y2="12" stroke="#0a0518" stroke-width="1.3" stroke-linecap="round" opacity=".5"/>
+    <line x1="5" y1="15" x2="11" y2="15" stroke="#0a0518" stroke-width="1.3" stroke-linecap="round" opacity=".5"/>
+  </symbol>
+
+  <!-- CLOSE: ×ボタン -->
+
+  <symbol id="ico-close" viewBox="0 0 16 16">
+    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <line x1="13" y1="3" x2="3"  y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- CHECK: チェックマーク -->
+
+  <symbol id="ico-check" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="9" fill="currentColor" opacity=".2" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M5.5 10.5 L8.5 13.5 L14.5 7" fill="none" stroke="currentColor"
+          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- WARN: 警告 -->
+
+  <symbol id="ico-warn" viewBox="0 0 20 20">
+    <path d="M10 1 L19 17 L1 17Z" fill="currentColor" opacity=".25" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="10" y1="8" x2="10" y2="12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="10" cy="15" r="1.1" fill="currentColor"/>
+  </symbol>
+
+  <!-- INFO: 情報 -->
+
+  <symbol id="ico-info" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="9" fill="currentColor" opacity=".2" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="10" cy="6.5" r="1.2" fill="currentColor"/>
+    <line x1="10" y1="9.5" x2="10" y2="14.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- STAR4: 4角星（デコレ用） -->
+
+  <symbol id="ico-star4" viewBox="0 0 12 12">
+    <path d="M6 0 L6.8 5.2 L12 6 L6.8 6.8 L6 12 L5.2 6.8 L0 6 L5.2 5.2Z" fill="currentColor"/>
+  </symbol>
+
+  <!-- RUNE: ルーン符文マーク（分割線など） -->
+
+  <symbol id="ico-rune" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".6"/>
+    <path d="M12 2 L12 22 M2 12 L22 12 M5 5 L19 19 M19 5 L5 19"
+          stroke="currentColor" stroke-width=".9" opacity=".4"/>
+    <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".8"/>
+    <circle cx="12" cy="12" r="1.2" fill="currentColor"/>
+  </symbol>
+
+</defs>
+</svg>
+
+<style>
+/* ── SVGアイコン共通スタイル ── */
+.ico { display:inline-block; vertical-align:middle; }
+.ico use { display:block; }
+
+:root {
+  --void: #04020a;
+  --deep: #0a0518;
+  --rune-purple: #7b3ff5;
+  --rune-glow:   #a855f7;
+  --rune-bright: #d8b4fe;
+  --gold:   #f5c842;
+  --teal:   #22d3ee;
+  --crimson:#ef4444;
+  --green:  #4ade80;
+  --amber:  #fbbf24;
+  --text:   #e2d9f3;
+  --dim:    #9d8cc0;
+  --border: rgba(123,63,245,.3);
+  --glow:   0 0 22px rgba(168,85,247,.4);
+  --mono:   'Courier New', Courier, monospace;
+  --serif:  Georgia, 'Times New Roman', serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{min-height:100vh;background:var(--void);color:var(--text);font-family:var(--serif);overflow-x:hidden;}
+
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(123,63,245,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 80%, rgba(34,211,238,.06) 0%, transparent 60%);
+  pointer-events:none;z-index:0;
+}
+#stars-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.45;}
+
+.app{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:40px 20px 80px;}
+
+/* ── HEADER ── */
+header{text-align:center;margin-bottom:44px;}
+.logo-wrap{
+  display:inline-block;margin-bottom:12px;
+  filter:drop-shadow(0 0 22px rgba(168,85,247,.9));
+  animation:pulse-glow 3s ease-in-out infinite;
+}
+@keyframes pulse-glow{
+  0%,100%{filter:drop-shadow(0 0 22px rgba(168,85,247,.8));}
+  50%{filter:drop-shadow(0 0 44px rgba(168,85,247,1)) drop-shadow(0 0 80px rgba(168,85,247,.45));}
+}
+h1{
+  font-family:var(--serif);font-size:clamp(24px,5vw,44px);font-weight:700;letter-spacing:.18em;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--rune-bright) 45%,var(--teal) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.subtitle{font-style:italic;font-size:14px;color:var(--dim);margin-top:8px;}
+.rune-divider{display:flex;align-items:center;gap:12px;margin:18px auto;max-width:340px;}
+.rune-divider::before,.rune-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--rune-purple),transparent);}
+.rune-divider-ico{display:flex;gap:8px;align-items:center;color:var(--rune-glow);}
+
+/* ── PANEL ── */
+.panel{
+  background:linear-gradient(135deg,rgba(18,11,46,.93) 0%,rgba(10,5,24,.97) 100%);
+  border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:16px;
+  box-shadow:var(--glow),inset 0 1px 0 rgba(168,85,247,.1);
+}
+.panel-title{
+  font-family:var(--serif);font-size:10px;letter-spacing:.28em;
+  color:var(--rune-glow);text-transform:uppercase;margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.panel-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ── TABS ── */
+.tab-row{
+  display:flex;gap:4px;background:rgba(10,5,24,.7);
+  padding:4px;border-radius:10px;margin-bottom:16px;border:1px solid var(--border);
+}
+.tab{
+  flex:1;padding:10px 6px;border:none;border-radius:7px;
+  background:transparent;color:var(--dim);
+  font-family:var(--serif);font-size:11px;letter-spacing:.07em;cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.tab svg{opacity:.6;transition:opacity .2s;}
+.tab.active{background:linear-gradient(135deg,rgba(109,40,217,.5),rgba(139,92,246,.3));color:var(--rune-bright);box-shadow:0 2px 10px rgba(109,40,217,.3);}
+.tab.active svg{opacity:1;}
+.tab-content{display:none;}.tab-content.active{display:block;}
+
+/* ── DROP ZONE ── */
+.drop-zone{
+  border:2px dashed var(--border);border-radius:12px;padding:32px 20px;
+  text-align:center;cursor:pointer;transition:all .3s;background:rgba(123,63,245,.03);
+}
+.drop-zone:hover,.drop-zone.drag-over{border-color:var(--rune-glow);background:rgba(123,63,245,.09);box-shadow:var(--glow);}
+.drop-ico{color:var(--rune-glow);margin-bottom:10px;transition:transform .3s;}
+.drop-zone:hover .drop-ico{transform:scale(1.12) rotate(-6deg);}
+.drop-text{font-size:15px;color:var(--dim);margin-bottom:5px;}
+.drop-subtext{font-size:12px;color:rgba(157,140,192,.5);font-style:italic;}
+input[type=file]{display:none;}
+
+/* ── FILE INFO ── */
+.file-info{display:none;align-items:center;gap:10px;padding:11px 13px;background:rgba(123,63,245,.1);border:1px solid var(--border);border-radius:9px;margin-top:10px;}
+.file-info.visible{display:flex;}
+.file-ico-wrap{flex-shrink:0;color:var(--rune-bright);}
+.file-details{flex:1;min-width:0;}
+.file-name{font-family:var(--mono);font-size:13px;color:var(--rune-bright);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.file-meta{font-size:11px;color:var(--dim);margin-top:2px;}
+.file-clear{background:none;border:none;color:var(--dim);cursor:pointer;padding:4px;transition:color .2s;display:flex;align-items:center;}
+.file-clear:hover{color:var(--crimson);}
+
+/* ── CONTROLS ── */
+.controls-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin-top:16px;}
+.control-group{display:flex;flex-direction:column;gap:5px;flex:1;min-width:130px;}
+.control-label{font-size:10px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;font-family:var(--mono);}
+select{background:rgba(10,5,24,.9);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--mono);font-size:12px;padding:10px 12px;-webkit-appearance:none;appearance:none;cursor:pointer;transition:all .2s;width:100%;}
+select:focus{outline:none;border-color:var(--rune-glow);box-shadow:0 0 10px rgba(168,85,247,.3);}
+.select-wrapper{position:relative;}
+.select-wrapper::after{content:'▾';position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--rune-glow);pointer-events:none;font-size:13px;}
+
+/* ── BUTTONS ── */
+.btn{
+  padding:10px 20px;border-radius:9px;border:none;
+  font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:.08em;
+  cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+}
+.btn svg{flex-shrink:0;}
+.btn-cast{background:linear-gradient(135deg,#6d28d9 0%,#7c3aed 60%,#8b5cf6 100%);color:#fff;box-shadow:0 4px 16px rgba(109,40,217,.5);}
+.btn-cast:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 26px rgba(109,40,217,.7),0 0 34px rgba(168,85,247,.35);}
+.btn-break{background:linear-gradient(135deg,#0e7490 0%,#0891b2 60%,#06b6d4 100%);color:#fff;box-shadow:0 4px 16px rgba(8,145,178,.5);}
+.btn-break:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 26px rgba(8,145,178,.7),0 0 34px rgba(34,211,238,.35);}
+.btn-secondary{background:rgba(123,63,245,.15);color:var(--rune-bright);border:1px solid var(--border);}
+.btn-secondary:hover:not(:disabled){background:rgba(123,63,245,.28);border-color:var(--rune-glow);}
+.btn:disabled{opacity:.38;cursor:not-allowed;transform:none!important;}
+
+/* ── PROGRESS ── */
+.progress-wrap{display:none;margin-top:13px;}.progress-wrap.visible{display:block;}
+.progress-label{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:5px;display:flex;justify-content:space-between;}
+.progress-bar-bg{height:4px;background:rgba(123,63,245,.2);border-radius:2px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--rune-purple),var(--teal));border-radius:2px;transition:width .3s;box-shadow:0 0 7px rgba(168,85,247,.6);}
+
+/* ── OUTPUT ── */
+.spell-output-section{display:none;}.spell-output-section.visible{display:block;}
+.spell-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:8px;margin-bottom:13px;}
+.stat-card{background:rgba(123,63,245,.08);border:1px solid rgba(123,63,245,.2);border-radius:8px;padding:8px 10px;text-align:center;}
+.stat-value{font-family:var(--mono);font-size:13px;color:var(--rune-bright);display:block;word-break:break-all;}
+.stat-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-top:3px;}
+.spell-textarea{width:100%;min-height:160px;background:rgba(4,2,10,.88);border:1px solid var(--border);border-radius:9px;color:var(--rune-glow);font-family:var(--mono);font-size:11px;line-height:1.7;padding:13px;resize:vertical;transition:border-color .2s;word-break:break-all;}
+.spell-textarea:focus{outline:none;border-color:var(--rune-glow);}
+.spell-textarea.decode-input{color:var(--teal);min-height:108px;}
+.spell-actions{display:flex;gap:9px;margin-top:10px;flex-wrap:wrap;}
+
+/* ── STATUS ── */
+.status-msg{display:none;padding:10px 13px;border-radius:8px;font-family:var(--mono);font-size:12px;margin-top:10px;align-items:center;gap:8px;line-height:1.5;}
+.status-msg.visible{display:flex;}
+.status-msg svg{flex-shrink:0;}
+.status-msg.success{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);color:var(--green);}
+.status-msg.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--crimson);}
+.status-msg.info{background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);color:var(--teal);}
+
+/* ── RUNE PREVIEW ── */
+.rune-preview{font-size:17px;letter-spacing:2px;color:var(--rune-glow);text-align:center;padding:8px;border-radius:8px;background:rgba(123,63,245,.05);border:1px solid rgba(123,63,245,.15);font-family:var(--mono);animation:rune-flicker 4s ease-in-out infinite;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-bottom:13px;}
+@keyframes rune-flicker{0%,94%,100%{opacity:1;}97%{opacity:.62;}}
+
+/* ── INSPECT TABLE ── */
+.inspect-table{width:100%;border-collapse:collapse;}
+.inspect-table tr{border-bottom:1px solid rgba(123,63,245,.12);}
+.inspect-table td{padding:9px 11px;font-size:13px;}
+.inspect-table td:first-child{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;width:42%;}
+.inspect-table td:last-child{color:var(--rune-bright);font-family:var(--mono);}
+
+/* ── PARTICLE ── */
+.particle{position:fixed;pointer-events:none;z-index:9999;animation:float-up 1.4s ease-out forwards;}
+@keyframes float-up{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-72px) scale(.3);}}
+
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--deep);}::-webkit-scrollbar-thumb{background:var(--rune-purple);border-radius:3px;}
+
+footer{text-align:center;margin-top:54px;color:rgba(157,140,192,.36);font-size:12px;font-style:italic;}
+
+@media(max-width:560px){
+  .controls-row{flex-direction:column;}
+  .btn{width:100%;justify-content:center;}
+  .spell-actions{flex-direction:column;}
+  .spell-actions .btn{width:100%;}
+  h1{letter-spacing:.07em;}
+  .tab span{display:none;}
+}
+</style>
+
+</head>
+<body>
+<canvas id="stars-canvas"></canvas>
+<div class="app">
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="logo-wrap">
+      <svg class="ico" width="72" height="72"><use href="#ico-orb"/></svg>
+    </div>
+    <h1>SPELL CODEC</h1>
+    <p class="subtitle">あらゆるファイルを呪文へ — あらゆる呪文をファイルへ</p>
+    <div class="rune-divider">
+      <div class="rune-divider-ico">
+        <svg class="ico" width="14" height="14"><use href="#ico-star4"/></svg>
+        <svg class="ico" width="18" height="18"><use href="#ico-rune"/></svg>
+        <svg class="ico" width="14" height="14"><use href="#ico-star4"/></svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- TABS -->
+
+  <div class="tab-row">
+    <button class="tab active" onclick="switchTab('cast')">
+      <svg class="ico" width="15" height="15"><use href="#ico-spark"/></svg>
+      <span>詠唱 — Cast</span>
+    </button>
+    <button class="tab" onclick="switchTab('break')">
+      <svg class="ico" width="15" height="15"><use href="#ico-unlock"/></svg>
+      <span>解呪 — Break</span>
+    </button>
+    <button class="tab" onclick="switchTab('inspect')">
+      <svg class="ico" width="15" height="15"><use href="#ico-eye"/></svg>
+      <span>鑑定 — Inspect</span>
+    </button>
+  </div>
+
+  <!-- ===== CAST ===== -->
+
+  <div id="tab-cast" class="tab-content active">
+
+```
+<div class="panel">
+  <div class="panel-title">
+    <svg class="ico" width="13" height="13"><use href="#ico-scroll"/></svg>
+    ファイルを選択
+  </div>
+  <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+    <div class="drop-ico">
+      <svg class="ico" width="52" height="52"><use href="#ico-scroll"/></svg>
+    </div>
+    <div class="drop-text">ファイルをドロップ、またはクリックして選択</div>
+    <div class="drop-subtext">画像・動画・音楽・テキスト・あらゆるファイル対応</div>
+  </div>
+  <input type="file" id="file-input" onchange="onFileSelect(event)">
+  <div class="file-info" id="file-info">
+    <div class="file-ico-wrap">
+      <svg class="ico" id="file-icon" width="28" height="28"><use id="file-icon-use" href="#ico-file"/></svg>
+    </div>
+    <div class="file-details">
+      <div class="file-name" id="file-name"></div>
+      <div class="file-meta" id="file-meta"></div>
+    </div>
+    <button class="file-clear" onclick="clearFile()">
+      <svg class="ico" width="14" height="14"><use href="#ico-close"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-title">
+    <svg class="ico" width="13" height="13"><use href="#ico-rune"/></svg>
+    詠唱設定
+  </div>
+  <div class="rune-preview" id="rune-preview"></div>
+  <div class="controls-row">
+    <div class="control-group">
+      <label class="control-label">符文セット</label>
+      <div class="select-wrapper">
+        <select id="rune-set" onchange="updateRunePreview()">
+          <option value="glypho64">ᚠ Glypho-64（ルーン文字）</option>
+          <option value="astral64">✦ Astral-64（天文・占星術）</option>
+          <option value="cthulhu64">꩜ Cthulhu-64（クトゥルフ）</option>
+          <option value="emoji64">🌙 Emoji-64（絵文字）</option>
+          <option value="kanji64">龍 Kanji-64（漢字）</option>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">圧縮</label>
+      <div class="select-wrapper">
+        <select id="compress-mode">
+          <option value="auto">自動（推奨）</option>
+          <option value="deflate">DEFLATE</option>
+          <option value="none">なし</option>
+        </select>
+      </div>
+    </div>
+    <div class="control-group" style="flex:0;min-width:auto;">
+      <label class="control-label">&nbsp;</label>
+      <button class="btn btn-cast" id="btn-cast" onclick="castSpell()" disabled>
+        <svg class="ico" width="14" height="14"><use href="#ico-spark"/></svg>
+        詠唱する
+      </button>
+    </div>
+  </div>
+  <div class="progress-wrap" id="cast-progress">
+    <div class="progress-label"><span id="cast-progress-label">詠唱中...</span><span id="cast-progress-pct">0%</span></div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="cast-progress-fill" style="width:0%"></div></div>
+  </div>
+  <div class="status-msg" id="cast-status"></div>
+</div>
+
+<div class="panel spell-output-section" id="cast-output">
+  <div class="panel-title">
+    <svg class="ico" width="13" height="13"><use href="#ico-orb"/></svg>
+    生成された呪文
+  </div>
+  <div class="spell-stats" id="cast-stats"></div>
+  <textarea class="spell-textarea" id="spell-output-text" readonly placeholder="呪文がここに現れる..."></textarea>
+  <div class="spell-actions">
+    <button class="btn btn-secondary" onclick="copySpell()">
+      <svg class="ico" width="14" height="14"><use href="#ico-copy"/></svg>
+      コピー
+    </button>
+    <button class="btn btn-secondary" onclick="downloadSpell()">
+      <svg class="ico" width="14" height="14"><use href="#ico-save"/></svg>
+      .spell として保存
+    </button>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- ===== BREAK ===== -->
+
+  <div id="tab-break" class="tab-content">
+    <div class="panel">
+      <div class="panel-title">
+        <svg class="ico" width="13" height="13"><use href="#ico-scroll"/></svg>
+        呪文を入力
+      </div>
+      <textarea class="spell-textarea decode-input" id="spell-input-text"
+        placeholder="⟁SPELL:v1:... の形式の呪文をここに貼り付けてください..."></textarea>
+      <div style="margin-top:11px;">
+        <button class="btn btn-break" onclick="breakSpell()">
+          <svg class="ico" width="14" height="14"><use href="#ico-unlock"/></svg>
+          解呪する
+        </button>
+      </div>
+      <div class="progress-wrap" id="break-progress">
+        <div class="progress-label"><span id="break-progress-label">解呪中...</span><span id="break-progress-pct">0%</span></div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="break-progress-fill" style="width:0%"></div></div>
+      </div>
+      <div class="status-msg" id="break-status"></div>
+    </div>
+    <div class="panel spell-output-section" id="break-output">
+      <div class="panel-title">
+        <svg class="ico" width="13" height="13"><use href="#ico-check"/></svg>
+        復元完了
+      </div>
+      <div class="spell-stats" id="break-stats"></div>
+      <div class="spell-actions">
+        <button class="btn btn-break" onclick="downloadRestored()">
+          <svg class="ico" width="14" height="14"><use href="#ico-save"/></svg>
+          ファイルをダウンロード
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== INSPECT ===== -->
+
+  <div id="tab-inspect" class="tab-content">
+    <div class="panel">
+      <div class="panel-title">
+        <svg class="ico" width="13" height="13"><use href="#ico-eye"/></svg>
+        呪文を鑑定する
+      </div>
+      <textarea class="spell-textarea decode-input" id="inspect-input-text"
+        placeholder="鑑定したい呪文をここに貼り付けてください..."></textarea>
+      <div style="margin-top:11px;">
+        <button class="btn btn-secondary" onclick="inspectSpell()">
+          <svg class="ico" width="14" height="14"><use href="#ico-inspect"/></svg>
+          鑑定する
+        </button>
+      </div>
+      <div class="status-msg" id="inspect-status"></div>
+    </div>
+    <div class="panel spell-output-section" id="inspect-output">
+      <div class="panel-title">
+        <svg class="ico" width="13" height="13"><use href="#ico-rune"/></svg>
+        鑑定結果
+      </div>
+      <table class="inspect-table" id="inspect-table"></table>
+    </div>
+  </div>
+
+</div><!-- /.app -->
+
+<footer>
+  <div class="rune-divider" style="max-width:240px;margin:0 auto 10px;">
+    <div class="rune-divider-ico">
+      <svg class="ico" width="12" height="12"><use href="#ico-star4"/></svg>
+      <svg class="ico" width="16" height="16"><use href="#ico-rune"/></svg>
+      <svg class="ico" width="12" height="12"><use href="#ico-star4"/></svg>
+    </div>
+  </div>
+  汝、これを読み解きし者よ — SPELL CODEC v1.1 — 全処理はブラウザ内で完結
+</footer>
+
+<script>
+// ── RUNE SETS ──────────────────────────────────
+var RUNE_SETS={
+  glypho64:{name:'Glypho-64',
+    chars:['ᚠ','ᚢ','ᚦ','ᚨ','ᚱ','ᚲ','ᚷ','ᚹ','ᚺ','ᚾ','ᛁ','ᛃ','ᛇ','ᛈ','ᛉ','ᛊ',
+           'ᛏ','ᛒ','ᛗ','ᛚ','ᛜ','ᛞ','ᛟ','ᚳ','ᚴ','ᛰ','ᛱ','ᛲ','ᛳ','ᛴ','ᛵ','ᛶ',
+           '𓂀','𓂁','𓂃','𓂄','𓂅','⟁','⟐','⟑','⟒','⊕','⊗','⊙','⊚','⊛','⋈','∴',
+           '∵','⌬','◈','◉','⍙','☽','☾','◌','○','●','◦','⊹','✦','✧','★','☆'],pad:'ᛝ'},
+  astral64:{name:'Astral-64',
+    chars:['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓','☀','☁','☂','☃',
+           '☄','★','☆','☇','☈','☉','☊','☋','☌','☍','☎','☏','☐','☑','☒','☓',
+           '☔','☕','☖','☗','☘','☙','☚','☛','☜','☝','☞','☟','☠','☡','☢','☣',
+           '☤','☥','☦','☧','☨','☩','☪','☫','☬','☭','☮','☯','✦','✧','⊹','✩'],pad:'⋆'},
+  cthulhu64:{name:'Cthulhu-64',
+    chars:['꩜','꧁','꧂','꫟','꩷','꩸','꩹','ꩺ','ꩻ','ꩽ','ꩾ','ꩿ','ꩶ','ꩵ','ꩴ','ꩳ',
+           'ꩲ','ꩱ','ꩰ','ꩯ','ꩮ','ꩭ','ꩬ','ꩫ','ꩪ','ꩩ','ꩨ','ꩧ','ꩦ','ꩥ','ꩤ','ꩣ',
+           '⸘','‽','⁂','※','⁑','⁕','⁎','⁏','⁐','⁔','⁒','‼','⁇','⁈','‾','⁻',
+           '↯','⇝','⇜','⇛','⇚','⇙','⇘','⇗','⇖','⇕','⇔','⇓','⇒','⇑','⇐','⇏'],pad:'꩜'},
+  emoji64:{name:'Emoji-64',
+    chars:['🌑','🌒','🌓','🌔','🌕','🌖','🌗','🌘','🌙','🌚','🌛','🌜','🌝','🌞','⭐','🌟',
+           '💫','✨','🔥','💥','❄','🌊','🌀','🌈','⚡','☀','🌤','⛅','🌥','☁','🌦','🌧',
+           '⛈','🌩','🌪','🌫','🌬','🔮','💎','🗝','⚔','🛡','📜','📖','🕯','🔯','⚗','🧪',
+           '🧬','🔭','🌍','🌎','🌏','🗺','🧭','⚓','🏔','🌋','🗻','🏝','🌊','🌌','🌠','💠'],pad:'🌑'},
+  kanji64:{name:'Kanji-64',
+    chars:['龍','鳳','麟','鬼','魔','霊','雷','風','水','火','土','金','木','闇','光','空',
+           '天','地','海','山','川','森','花','月','星','日','雲','雪','嵐','渦','炎','氷',
+           '剣','盾','弓','槍','魂','心','夢','幻','影','鏡','玉','宝','珠','印','符','陣',
+           '術','法','呪','縛','封','解','召','降','祈','誓','契','盟','血','骨','命','道'],pad:'無'}
+};
+
+// ── MIME → SVG アイコン ID マッピング ──────────
+var MIME_ICO={
+  'image/':'ico-image','video/':'ico-video','audio/':'ico-music',
+  'application/pdf':'ico-pdf','application/zip':'ico-archive',
+  'application/gzip':'ico-archive','text/':'ico-text'
+};
+function mimeToIcoId(m){
+  for(var k in MIME_ICO){if(m.startsWith(k)||m===k)return MIME_ICO[k];}
+  return'ico-file';
+}
+
+// ── CRC32 ──────────────────────────────────────
+var CRC32T=(function(){var t=new Uint32Array(256);for(var i=0;i<256;i++){var c=i;for(var j=0;j<8;j++)c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1);t[i]=c;}return t;})();
+function crc32(d){var c=0xFFFFFFFF;for(var i=0;i<d.length;i++)c=CRC32T[(c^d[i])&0xFF]^(c>>>8);return((c^0xFFFFFFFF)>>>0).toString(16).padStart(8,'0').slice(-4);}
+
+// ── COMPRESSION ────────────────────────────────
+var HAS_COMP=(typeof CompressionStream!=='undefined');
+async function compress(u8){
+  if(!HAS_COMP)return u8;
+  try{var cs=new CompressionStream('deflate');var w=cs.writable.getWriter();w.write(u8);w.close();
+    var ch=[],r=cs.readable.getReader();for(;;){var x=await r.read();if(x.done)break;ch.push(x.value);}
+    var tot=ch.reduce(function(s,c){return s+c.length;},0),out=new Uint8Array(tot),off=0;
+    ch.forEach(function(c){out.set(c,off);off+=c.length;});return out;}catch(e){return u8;}
+}
+async function decompress(u8){
+  if(!HAS_COMP)return u8;
+  try{var ds=new DecompressionStream('deflate');var w=ds.writable.getWriter();w.write(u8);w.close();
+    var ch=[],r=ds.readable.getReader();for(;;){var x=await r.read();if(x.done)break;ch.push(x.value);}
+    var tot=ch.reduce(function(s,c){return s+c.length;},0),out=new Uint8Array(tot),off=0;
+    ch.forEach(function(c){out.set(c,off);off+=c.length;});return out;}catch(e){return null;}
+}
+
+// ── MIME ───────────────────────────────────────
+var MM={jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',gif:'image/gif',webp:'image/webp',svg:'image/svg+xml',
+        mp4:'video/mp4',webm:'video/webm',mov:'video/quicktime',avi:'video/x-msvideo',
+        mp3:'audio/mpeg',wav:'audio/wav',ogg:'audio/ogg',flac:'audio/flac',aac:'audio/aac',
+        pdf:'application/pdf',zip:'application/zip',gz:'application/gzip',
+        json:'application/json',txt:'text/plain',html:'text/html',
+        css:'text/css',js:'application/javascript',md:'text/markdown'};
+var EM={};Object.keys(MM).forEach(function(k){if(!EM[MM[k]])EM[MM[k]]=k;});
+var SKIP={};['image/jpeg','image/png','image/gif','image/webp','video/mp4','video/webm','video/quicktime','video/x-msvideo','audio/mpeg','audio/aac','audio/ogg','audio/flac','application/zip','application/gzip'].forEach(function(m){SKIP[m]=1;});
+function detectMime(n){return MM[(n.split('.').pop()||'').toLowerCase()]||'application/octet-stream';}
+function mimeToExt(m){return EM[m]||'bin';}
+function fmtB(n){if(n<1024)return n+' B';if(n<1048576)return(n/1024).toFixed(1)+' KB';if(n<1073741824)return(n/1048576).toFixed(1)+' MB';return(n/1073741824).toFixed(2)+' GB';}
+
+// ── SVG ICON INLINE HELPER ─────────────────────
+function icoSvg(id,size){
+  size=size||16;
+  return'<svg width="'+size+'" height="'+size+'" style="display:inline-block;vertical-align:middle;flex-shrink:0"><use href="#'+id+'"/></svg>';
+}
+
+// ── RUNE ENCODE / DECODE ───────────────────────
+function runeEncode(bytes,rsId){
+  var rs=RUNE_SETS[rsId];if(!rs)throw new Error('SPELL_003: 不明な符文セット: '+rsId);
+  var C=rs.chars,P=rs.pad,out='';
+  for(var i=0;i<bytes.length;i+=3){
+    var b0=bytes[i],b1=i+1<bytes.length?bytes[i+1]:0,b2=i+2<bytes.length?bytes[i+2]:0;
+    out+=C[b0>>2];out+=C[((b0&3)<<4)|(b1>>4)];
+    out+=(i+1<bytes.length)?C[((b1&0xF)<<2)|(b2>>6)]:P;
+    out+=(i+2<bytes.length)?C[b2&0x3F]:P;
+  }
+  return out;
+}
+function runeDecode(str,rsId){
+  var rs=RUNE_SETS[rsId];if(!rs)throw new Error('SPELL_003: 不明な符文セット: '+rsId);
+  var rev={};rs.chars.forEach(function(c,i){rev[c]=i;});rev[rs.pad]=-1;
+  var gl=[...str],bytes=[];
+  for(var i=0;i<gl.length;i+=4){
+    var c0=rev[gl[i]],c1=rev[gl[i+1]];
+    var c2=(i+2<gl.length)?rev[gl[i+2]]:-1;
+    var c3=(i+3<gl.length)?rev[gl[i+3]]:-1;
+    if(c0==null||c1==null)continue;
+    bytes.push((c0<<2)|(c1>>4));
+    if(c2!==-1&&c2!=null)bytes.push(((c1&0xF)<<4)|(c2>>2));
+    if(c3!==-1&&c3!=null)bytes.push(((c2&3)<<6)|c3);
+  }
+  return new Uint8Array(bytes);
+}
+function detectRuneSet(body){
+  var gl=[...body].slice(0,40),best='glypho64',bs=0;
+  Object.keys(RUNE_SETS).forEach(function(id){
+    var rs=RUNE_SETS[id],cs={};rs.chars.forEach(function(c){cs[c]=1;});cs[rs.pad]=1;
+    var s=gl.filter(function(g){return cs[g];}).length;if(s>bs){bs=s;best=id;}
+  });
+  return best;
+}
+
+// ── SPELL FORMAT ───────────────────────────────
+function buildSpell(cb,mime,origSz,cs,rsId){
+  return'⟁SPELL:v1:'+rsId+':'+mime+':'+origSz+':'+cs+'⟁\n'+runeEncode(cb,rsId)+'\n⌬END:'+cs+'⌬';
+}
+function parseSpell(s){
+  var m=s.match(/⟁SPELL:([^:]+):([^:]+):([^:⟁]+):(\d+):([a-f0-9]{4})⟁/);
+  if(!m)throw new Error('SPELL_001: 召喚符が見つかりません。正しい呪文か確認してください');
+  var fm=s.match(/⌬END:([a-f0-9]{4})⌬/);
+  if(!fm)throw new Error('SPELL_001: 封印符が見つかりません。呪文が不完全です');
+  var hEnd=s.indexOf(m[0])+m[0].length,bEnd=s.lastIndexOf('⌬END:');
+  var body=s.slice(hEnd,bEnd).replace(/[\r\n\t ]/g,'');
+  return{ver:m[1],rsId:m[2],mime:m[3],origSz:parseInt(m[4]),cs:m[5],body:body};
+}
+
+// ── STATE ──────────────────────────────────────
+var curFile=null,curSpell='',restBlob=null,restName='';
+
+// ── UI HELPERS ─────────────────────────────────
+function switchTab(id){
+  ['cast','break','inspect'].forEach(function(n,i){
+    document.querySelectorAll('.tab')[i].classList.toggle('active',n===id);
+    document.getElementById('tab-'+n).classList.toggle('active',n===id);
+  });
+}
+function setStatus(id,type,msg){
+  var el=document.getElementById(id);
+  el.className='status-msg visible '+type;
+  var icoId=type==='success'?'ico-check':type==='error'?'ico-warn':'ico-info';
+  el.innerHTML=icoSvg(icoId,16)+esc(msg);
+}
+function clrStatus(id){document.getElementById(id).className='status-msg';}
+function setProg(p,pct,lbl){
+  document.getElementById(p+'-progress').classList.add('visible');
+  document.getElementById(p+'-progress-fill').style.width=pct+'%';
+  document.getElementById(p+'-progress-pct').textContent=pct+'%';
+  if(lbl)document.getElementById(p+'-progress-label').textContent=lbl;
+}
+function clrProg(p){document.getElementById(p+'-progress').classList.remove('visible');}
+function tick(){return new Promise(function(r){setTimeout(r,10);});}
+function triggerDL(blob,name){
+  var u=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=u;a.download=name;document.body.appendChild(a);a.click();
+  setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(u);},200);
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function statCard(v,l){return'<div class="stat-card"><span class="stat-value">'+esc(v)+'</span><span class="stat-label">'+esc(l)+'</span></div>';}
+function trow(k,v){return'<tr><td>'+esc(k)+'</td><td>'+v+'</td></tr>';}
+
+// ── PARTICLES ─────────────────────────────────
+function spawnParts(e){
+  var symbols=['✦','⟁','ᛟ','★','◈','⌬','⊹','∴','☽'];
+  for(var i=0;i<6;i++){
+    var p=document.createElement('div');p.className='particle';
+    // SVGとテキスト交互
+    if(i%2===0){
+      var s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+      s.setAttribute('width','14');s.setAttribute('height','14');
+      s.style.color='rgba(168,85,247,0.9)';
+      var u=document.createElementNS('http://www.w3.org/2000/svg','use');
+      u.setAttribute('href',i===0?'#ico-spark':'#ico-star4');
+      s.appendChild(u);p.appendChild(s);
+    }else{
+      p.style.fontSize='15px';p.style.color='rgba(168,85,247,0.8)';
+      p.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    }
+    p.style.left=(e.clientX+(Math.random()-.5)*56)+'px';
+    p.style.top=(e.clientY+(Math.random()-.5)*34)+'px';
+    document.body.appendChild(p);
+    (function(el){setTimeout(function(){el.parentNode&&el.parentNode.removeChild(el);},1400);})(p);
+  }
+}
+document.addEventListener('click',function(e){
+  if(e.target.closest('.btn-cast,.btn-break'))spawnParts(e);
+});
+
+// ── FILE SELECT / DROP ─────────────────────────
+var dz=document.getElementById('drop-zone');
+dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('drag-over');});
+dz.addEventListener('dragleave',function(){dz.classList.remove('drag-over');});
+dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('drag-over');if(e.dataTransfer.files.length)loadFile(e.dataTransfer.files[0]);});
+function onFileSelect(e){if(e.target.files.length)loadFile(e.target.files[0]);}
+function loadFile(f){
+  curFile=f;var mime=detectMime(f.name);
+  var icoId=mimeToIcoId(mime);
+  document.getElementById('file-icon-use').setAttribute('href','#'+icoId);
+  document.getElementById('file-name').textContent=f.name;
+  document.getElementById('file-meta').textContent=fmtB(f.size)+' · '+mime;
+  document.getElementById('file-info').classList.add('visible');
+  document.getElementById('btn-cast').disabled=false;
+  clrStatus('cast-status');document.getElementById('cast-output').classList.remove('visible');
+}
+function clearFile(){
+  curFile=null;document.getElementById('file-info').classList.remove('visible');
+  document.getElementById('btn-cast').disabled=true;document.getElementById('file-input').value='';
+}
+function updateRunePreview(){
+  var rs=RUNE_SETS[document.getElementById('rune-set').value];
+  document.getElementById('rune-preview').textContent=rs.chars.slice(0,24).join('');
+}
+
+// ── CAST ───────────────────────────────────────
+async function castSpell(){
+  if(!curFile)return;
+  var rsId=document.getElementById('rune-set').value;
+  var cm=document.getElementById('compress-mode').value;
+  document.getElementById('btn-cast').disabled=true;
+  clrStatus('cast-status');document.getElementById('cast-output').classList.remove('visible');
+  try{
+    setProg('cast',10,'ファイルを読み込み中...');
+    var buf=await curFile.arrayBuffer();var bytes=new Uint8Array(buf);
+    setProg('cast',25,'チェックサムを計算中...');await tick();
+    var cs=crc32(bytes);var mime=detectMime(curFile.name);var origSz=bytes.length;
+    var useC=(cm==='none')?false:(cm==='deflate'?true:!SKIP[mime]);
+    setProg('cast',45,useC?'圧縮中 (DEFLATE)...':'圧縮スキップ（既圧縮形式）');await tick();
+    var proc=bytes,didC=false;
+    if(useC){var comp=await compress(bytes);if(comp.length<bytes.length){proc=comp;didC=true;}}
+    setProg('cast',70,'符文エンコード中...');await tick();
+    var spell=buildSpell(proc,mime,origSz,cs,rsId);
+    setProg('cast',96,'呪文を封印中...');await tick();
+    curSpell=spell;document.getElementById('spell-output-text').value=spell;
+    var ratio=(([...spell].length)/origSz*100).toFixed(1);
+    document.getElementById('cast-stats').innerHTML=
+      statCard(fmtB(origSz),'元サイズ')+statCard(fmtB(proc.length),didC?'圧縮後':'処理後')+
+      statCard(([...spell].length).toLocaleString(),'呪文文字数')+statCard(ratio+'%','比率')+
+      statCard(cs,'チェックサム')+statCard(RUNE_SETS[rsId].name,'符文セット');
+    setProg('cast',100,'完了！');setTimeout(function(){clrProg('cast');},700);
+    document.getElementById('cast-output').classList.add('visible');
+    setStatus('cast-status','success','詠唱完了！ '+curFile.name+' を呪文化しました');
+  }catch(err){clrProg('cast');setStatus('cast-status','error',err.message);}
+  finally{document.getElementById('btn-cast').disabled=false;}
+}
+async function copySpell(){
+  if(!curSpell)return;
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(curSpell);}
+    else{var ta=document.getElementById('spell-output-text');ta.select();ta.setSelectionRange(0,999999);document.execCommand('copy');}
+    setStatus('cast-status','success','クリップボードにコピーしました！');
+  }catch(e){setStatus('cast-status','info','テキストを手動で選択してコピーしてください。');}
+}
+function downloadSpell(){
+  if(!curSpell)return;
+  triggerDL(new Blob([curSpell],{type:'text/plain;charset=utf-8'}),(curFile?curFile.name.replace(/\.[^.]+$/,''):'spell')+'.spell');
+}
+
+// ── BREAK ──────────────────────────────────────
+async function breakSpell(){
+  var st=document.getElementById('spell-input-text').value.trim();
+  if(!st){setStatus('break-status','error','呪文を入力してください');return;}
+  clrStatus('break-status');document.getElementById('break-output').classList.remove('visible');
+  try{
+    setProg('break',15,'呪文を解析中...');await tick();
+    var p=parseSpell(st);
+    setProg('break',35,'符文セットを判別中...');await tick();
+    var rsId=(p.rsId in RUNE_SETS)?p.rsId:detectRuneSet(p.body);
+    setProg('break',55,'符文をデコード中...');await tick();
+    var cb=runeDecode(p.body,rsId);
+    setProg('break',72,'解凍中...');await tick();
+    var bytes=await decompress(cb);
+    if(!bytes||bytes.length===0||bytes.length<cb.length)bytes=cb;
+    setProg('break',88,'チェックサム照合中...');await tick();
+    var cs=crc32(bytes);var csOk=(cs===p.cs);
+    setProg('break',100,'完了！');setTimeout(function(){clrProg('break');},700);
+    var ext=mimeToExt(p.mime);
+    restName='restored.'+ext;restBlob=new Blob([bytes],{type:p.mime});
+    var icoId=mimeToIcoId(p.mime);
+    document.getElementById('break-stats').innerHTML=
+      '<div class="stat-card"><span class="stat-value">'+icoSvg(icoId,22)+'</span><span class="stat-label">種別</span></div>'+
+      statCard(fmtB(bytes.length),'復元サイズ')+statCard(p.mime,'MIME')+
+      statCard(p.cs,'CRC '+(csOk?'✓':'⚠'))+
+      statCard(RUNE_SETS[rsId]?RUNE_SETS[rsId].name:rsId,'符文セット')+
+      statCard('.'+ext,'拡張子');
+    document.getElementById('break-output').classList.add('visible');
+    setStatus('break-status','success','解呪完了！ '+restName+' を復元しました'+(csOk?'':' — チェックサム不一致'));
+  }catch(err){clrProg('break');setStatus('break-status','error',err.message);}
+}
+function downloadRestored(){if(restBlob)triggerDL(restBlob,restName);}
+
+// ── INSPECT ────────────────────────────────────
+function inspectSpell(){
+  var st=document.getElementById('inspect-input-text').value.trim();
+  if(!st){setStatus('inspect-status','error','呪文を入力してください');return;}
+  clrStatus('inspect-status');document.getElementById('inspect-output').classList.remove('visible');
+  try{
+    var p=parseSpell(st);
+    var rsId=(p.rsId in RUNE_SETS)?p.rsId:detectRuneSet(p.body);
+    var icoId=mimeToIcoId(p.mime);
+    document.getElementById('inspect-table').innerHTML=
+      trow('バージョン',esc(p.ver))+
+      trow('ファイル種別',icoSvg(icoId,14)+' '+esc(p.mime))+
+      trow('元サイズ',esc(fmtB(p.origSz)+' ('+p.origSz.toLocaleString()+' bytes)'))+
+      trow('呪文文字数',esc([...st].length.toLocaleString()+' 文字'))+
+      trow('本文符文数',esc([...p.body].length.toLocaleString()+' 符文'))+
+      trow('符文セット',esc(RUNE_SETS[rsId]?RUNE_SETS[rsId].name:rsId))+
+      trow('チェックサム',esc(p.cs))+
+      trow('拡張子（推定）',esc('.'+mimeToExt(p.mime)));
+    document.getElementById('inspect-output').classList.add('visible');
+    setStatus('inspect-status','success','鑑定完了！');
+  }catch(err){setStatus('inspect-status','error',err.message);}
+}
+
+// ── STARS ──────────────────────────────────────
+(function(){
+  var cv=document.getElementById('stars-canvas'),ctx=cv.getContext('2d'),st=[];
+  function resize(){
+    cv.width=window.innerWidth;cv.height=window.innerHeight;
+    st=Array.from({length:130},function(){
+      return{x:Math.random()*cv.width,y:Math.random()*cv.height,
+             r:Math.random()*1.3+.2,sp:Math.random()*.005+.001,ph:Math.random()*Math.PI*2};
+    });
+  }
+  function draw(t){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    st.forEach(function(s){
+      var a=.2+.5*Math.sin(s.ph+t*s.sp);
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(216,180,254,'+a+')';ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();requestAnimationFrame(draw);
+})();
+
+updateRunePreview();
+</script>
+
+</body>
+</html>
