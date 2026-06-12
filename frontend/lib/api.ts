@@ -1,4 +1,9 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+import { getConfig } from "./config";
+
+function getApiUrl(): string {
+  if (typeof window === "undefined") return "http://localhost:8000";
+  return getConfig().backendUrl;
+}
 
 export async function sendMessageStream(params: {
   conversationId: string;
@@ -10,7 +15,7 @@ export async function sendMessageStream(params: {
   onDone: () => void;
   onError: (error: string) => void;
 }) {
-  const response = await fetch(`${API_URL}/api/chat/stream`, {
+  const response = await fetch(`${getApiUrl()}/api/chat/stream`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -42,28 +47,19 @@ export async function sendMessageStream(params: {
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
-
       buffer += decoder.decode(value, { stream: true });
       const lines = buffer.split("\n");
       buffer = lines.pop() ?? "";
-
       for (const line of lines) {
         if (!line.startsWith("data: ")) continue;
         const data = line.slice(6).trim();
         if (!data) continue;
-
         try {
           const parsed = JSON.parse(data);
-          if (parsed.type === "content") {
-            params.onChunk(parsed.content);
-          } else if (parsed.type === "done") {
-            params.onDone();
-          } else if (parsed.type === "error") {
-            params.onError(parsed.content);
-          }
-        } catch {
-          // Ignore malformed JSON
-        }
+          if (parsed.type === "content") params.onChunk(parsed.content);
+          else if (parsed.type === "done") params.onDone();
+          else if (parsed.type === "error") params.onError(parsed.content);
+        } catch {}
       }
     }
   } finally {
@@ -72,13 +68,13 @@ export async function sendMessageStream(params: {
 }
 
 export async function fetchCharacters() {
-  const res = await fetch(`${API_URL}/api/characters`);
+  const res = await fetch(`${getApiUrl()}/api/characters`);
   if (!res.ok) throw new Error("Failed to fetch characters");
   return res.json();
 }
 
 export async function createCharacter(data: Record<string, unknown>) {
-  const res = await fetch(`${API_URL}/api/characters`, {
+  const res = await fetch(`${getApiUrl()}/api/characters`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -88,7 +84,7 @@ export async function createCharacter(data: Record<string, unknown>) {
 }
 
 export async function fetchMemories(userId: string, memoryType?: string) {
-  const url = new URL(`${API_URL}/api/memory/${userId}`);
+  const url = new URL(`${getApiUrl()}/api/memory/${userId}`);
   if (memoryType) url.searchParams.set("memory_type", memoryType);
   const res = await fetch(url.toString());
   if (!res.ok) throw new Error("Failed to fetch memories");
@@ -100,7 +96,7 @@ export async function ingestDocument(params: {
   content: string;
   source: string;
 }) {
-  const res = await fetch(`${API_URL}/api/knowledge/ingest`, {
+  const res = await fetch(`${getApiUrl()}/api/knowledge/ingest`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -113,9 +109,15 @@ export async function ingestDocument(params: {
   return res.json();
 }
 
-export async function checkHealth() {
+export async function checkHealth(): Promise<{
+  status: string;
+  llm: string;
+  model: string;
+} | null> {
   try {
-    const res = await fetch(`${API_URL}/health`, { signal: AbortSignal.timeout(3000) });
+    const res = await fetch(`${getApiUrl()}/health`, {
+      signal: AbortSignal.timeout(3000),
+    });
     return res.ok ? await res.json() : null;
   } catch {
     return null;

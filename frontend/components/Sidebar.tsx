@@ -23,6 +23,10 @@ const navItems = [
   { href: "/knowledge", icon: BookOpen, label: "知識ベース" },
 ];
 
+const bottomNavItems = [
+  { href: "/settings", icon: Settings, label: "設定" },
+];
+
 export function Sidebar() {
   const pathname = usePathname();
   const {
@@ -136,10 +140,19 @@ export function Sidebar() {
 
         {/* Footer */}
         <div className="p-3 border-t border-gray-800">
-          <Link href="/settings" className="sidebar-item">
-            <Settings className="w-4 h-4" />
-            設定
-          </Link>
+          {bottomNavItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={clsx(
+                "sidebar-item",
+                pathname === item.href && "active"
+              )}
+            >
+              <item.icon className="w-4 h-4 flex-shrink-0" />
+              {item.label}
+            </Link>
+          ))}
         </div>
       </aside>
     </>
