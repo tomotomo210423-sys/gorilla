@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-gray-950 text-gray-100 antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-900;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+@layer components {
+  .message-user {
+    @apply bg-gorilla-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%] ml-auto;
+  }
+
+  .message-assistant {
+    @apply bg-gray-800 text-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%];
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:text-gray-100
+           hover:bg-gray-800 transition-colors cursor-pointer text-sm;
+  }
+
+  .sidebar-item.active {
+    @apply text-gray-100 bg-gray-800;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-gorilla-600 hover:bg-gorilla-500 text-white rounded-lg
+           transition-colors font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply px-3 py-2 text-gray-400 hover:text-gray-100 hover:bg-gray-800
+           rounded-lg transition-colors text-sm;
+  }
+
+  .input-field {
+    @apply bg-gray-800 border border-gray-700 text-gray-100 rounded-lg px-3 py-2
+           focus:outline-none focus:ring-2 focus:ring-gorilla-500 focus:border-transparent
+           placeholder:text-gray-500 text-sm;
+  }
+
+  /* Markdown styles */
+  .prose-dark {
+    @apply text-gray-100;
+  }
+  .prose-dark h1, .prose-dark h2, .prose-dark h3 {
+    @apply text-gray-50 font-semibold mt-4 mb-2;
+  }
+  .prose-dark p {
+    @apply mb-3 leading-relaxed;
+  }
+  .prose-dark code {
+    @apply bg-gray-700 text-green-300 px-1 py-0.5 rounded text-sm font-mono;
+  }
+  .prose-dark pre {
+    @apply bg-gray-900 rounded-lg p-4 overflow-x-auto my-3;
+  }
+  .prose-dark pre code {
+    @apply bg-transparent text-gray-200 p-0;
+  }
+  .prose-dark ul, .prose-dark ol {
+    @apply pl-5 mb-3;
+  }
+  .prose-dark li {
+    @apply mb-1;
+  }
+  .prose-dark blockquote {
+    @apply border-l-4 border-gorilla-500 pl-4 italic text-gray-400;
+  }
+  .prose-dark a {
+    @apply text-gorilla-400 hover:underline;
+  }
+  .prose-dark table {
+    @apply w-full border-collapse text-sm;
+  }
+  .prose-dark th {
+    @apply bg-gray-700 px-3 py-2 text-left font-semibold;
+  }
+  .prose-dark td {
+    @apply border-t border-gray-700 px-3 py-2;
+  }
+}
+
+/* Typing indicator */
+.typing-dot {
+  @apply w-2 h-2 bg-gray-400 rounded-full;
+  animation: pulseDot 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
