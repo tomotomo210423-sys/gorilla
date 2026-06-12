@@ -1,9 +1,42 @@
 /**
- * WebLLM wrapper: runs Qwen2.5 directly in the browser via WebGPU.
- * Model files are downloaded from mlc.ai CDN on first use, then cached.
+ * WebLLM: Qwen2.5 runs directly in the browser via WebGPU.
+ * Loaded from CDN at runtime — no npm bundle, no build-time issues.
  */
 
 import type { WebLLMModel } from "./config";
+
+// ── Inline types (CDN import has no TS types) ───────────────────────────────
+
+interface InitProgress {
+  progress: number;
+  text: string;
+}
+
+interface CompletionChunk {
+  choices: { delta: { content?: string } }[];
+}
+
+interface ChatEngine {
+  chat: {
+    completions: {
+      create(params: {
+        messages: { role: string; content: string }[];
+        stream: true;
+        temperature?: number;
+        max_tokens?: number;
+      }): Promise<AsyncIterable<CompletionChunk>>;
+    };
+  };
+}
+
+interface WebLLMModule {
+  CreateMLCEngine(
+    modelId: string,
+    options?: { initProgressCallback?: (p: InitProgress) => void }
+  ): Promise<ChatEngine>;
+}
+
+// ── Status types ─────────────────────────────────────────────────────────────
 
 export type LoadingStatus =
   | { phase: "idle" }
@@ -12,10 +45,13 @@ export type LoadingStatus =
   | { phase: "ready"; model: string }
   | { phase: "error"; message: string };
 
-type ProgressCallback = (status: LoadingStatus) => void;
+// ── Module state ─────────────────────────────────────────────────────────────
 
-let engineInstance: unknown = null;
+let engineInstance: ChatEngine | null = null;
 let loadedModel: string | null = null;
+const CDN = "https://esm.run/@mlc-ai/web-llm";
+
+// ── Public API ────────────────────────────────────────────────────────────────
 
 export function isWebGPUSupported(): boolean {
   return typeof navigator !== "undefined" && "gpu" in navigator;
@@ -23,10 +59,13 @@ export function isWebGPUSupported(): boolean {
 
 export async function loadWebLLM(
   modelId: WebLLMModel,
-  onProgress: ProgressCallback
+  onProgress: (s: LoadingStatus) => void
 ): Promise<boolean> {
   if (!isWebGPUSupported()) {
-    onProgress({ phase: "error", message: "WebGPU非対応ブラウザです。Chrome 113以上をお使いください。" });
+    onProgress({
+      phase: "error",
+      message: "WebGPU 非対応ブラウザです。Chrome 113 以上をお使いください。",
+    });
     return false;
   }
 
@@ -36,13 +75,16 @@ export async function loadWebLLM(
   }
 
   try {
-    onProgress({ phase: "loading", progress: 0, text: "WebLLMを初期化中..." });
+    onProgress({ phase: "loading", progress: 0, text: "WebLLM を初期化中..." });
 
-    // Dynamic import — browser only, not included in SSR bundle
-    const webllm = await import("@mlc-ai/web-llm");
+    // Dynamic CDN import — skipped by webpack, executed by browser
+    const webllm = await import(
+      /* webpackIgnore: true */
+      CDN as string
+    ) as unknown as WebLLMModule;
 
     engineInstance = await webllm.CreateMLCEngine(modelId, {
-      initProgressCallback: (info: { progress: number; text: string }) => {
+      initProgressCallback: (info) => {
         onProgress({
           phase: "loading",
           progress: Math.round(info.progress * 100),
@@ -69,15 +111,7 @@ export async function* generateStream(
 ): AsyncGenerator<string> {
   if (!engineInstance) throw new Error("WebLLM not loaded");
 
-  const engine = engineInstance as {
-    chat: {
-      completions: {
-        create: (params: unknown) => Promise<AsyncIterable<{ choices: { delta: { content?: string } }[] }>>;
-      };
-    };
-  };
-
-  const stream = await engine.chat.completions.create({
+  const stream = await engineInstance.chat.completions.create({
     messages,
     stream: true,
     temperature: options?.temperature ?? 0.8,
