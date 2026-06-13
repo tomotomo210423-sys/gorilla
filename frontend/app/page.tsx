@@ -249,8 +249,9 @@ export default function ChatPage() {
           },
         });
       } catch (err) {
-        let msg = "エラーが発生しました";
-        if (err instanceof TypeError && err.message.toLowerCase().includes("fetch")) {
+        let msg = "バックエンドに接続できません。Dockerが起動しているか確認してください。";
+        if (err instanceof TypeError) {
+          // "Failed to fetch" (Chrome) / "Load failed" (Safari) / "NetworkError" etc.
           msg = "バックエンドに接続できません。Dockerが起動しているか確認してください。";
         } else if (err instanceof Error) {
           msg = err.message;
