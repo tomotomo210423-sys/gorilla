@@ -41,8 +41,41 @@ function EmptyState({ onNew }: { onNew: () => void }) {
 
 // ─── WebLLM loading overlay ───────────────────────────────────────────────────
 
-function WebLLMLoader({ status }: { status: LoadingStatus }) {
-  if (status.phase === "idle" || status.phase === "ready") return null;
+function WebLLMLoader({
+  status,
+  onLoad,
+}: {
+  status: LoadingStatus;
+  onLoad: () => void;
+}) {
+  if (status.phase === "ready") return null;
+
+  // Idle: show manual load button (don't auto-download)
+  if (status.phase === "idle") {
+    return (
+      <div className="absolute inset-0 bg-gray-950/80 backdrop-blur-sm z-10
+                      flex flex-col items-center justify-center gap-4 p-8">
+        <div className="w-14 h-14 bg-purple-700 rounded-2xl flex items-center justify-center">
+          <Download className="w-7 h-7 text-white" />
+        </div>
+        <p className="text-gray-100 font-semibold text-lg">AIモデルの読み込み</p>
+        <p className="text-gray-400 text-sm text-center max-w-xs">
+          ブラウザ上でAIを動作させるためにモデルをダウンロードします。
+          初回のみ必要で、以降はキャッシュされます。
+        </p>
+        <button
+          onClick={onLoad}
+          className="btn-primary flex items-center gap-2 px-6 py-3"
+        >
+          <Download className="w-4 h-4" />
+          AIを読み込む
+        </button>
+        <p className="text-gray-600 text-xs">
+          設定でモデルサイズを変更できます（デフォルト: Qwen2.5 1.5B ≈ 900MB）
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="absolute inset-0 bg-gray-950/90 backdrop-blur-sm z-10
@@ -77,6 +110,9 @@ function WebLLMLoader({ status }: { status: LoadingStatus }) {
         <>
           <p className="text-red-400 font-medium">読み込みエラー</p>
           <p className="text-gray-500 text-sm text-center max-w-xs">{status.message}</p>
+          <button onClick={onLoad} className="btn-ghost border border-gray-700 px-4 py-2 text-sm">
+            再試行
+          </button>
         </>
       )}
     </div>
@@ -105,19 +141,21 @@ export default function ChatPage() {
 
   const activeConversation = conversations.find((c) => c.id === activeConversationId);
 
-  // Initialize on mount
+  // Initialize on mount — do NOT auto-load the model; user must click explicitly
   useEffect(() => {
     const cfg = getConfig();
     if (cfg.mode === "browser") {
       setIsBrowserMode(true);
-      // Auto-load WebLLM if not already loaded
-      if (!getLoadedModel()) {
-        setLlmStatus({ phase: "loading", progress: 0, text: "初期化中..." });
-        loadWebLLM(cfg.webllmModel, setLlmStatus);
-      } else {
+      if (getLoadedModel()) {
         setLlmStatus({ phase: "ready", model: getLoadedModel()! });
       }
+      // phase stays "idle" → user sees the load button
     }
+  }, []);
+
+  const handleLoadModel = useCallback(() => {
+    const cfg = getConfig();
+    loadWebLLM(cfg.webllmModel, setLlmStatus);
   }, []);
 
   useEffect(() => {
@@ -211,7 +249,12 @@ export default function ChatPage() {
           },
         });
       } catch (err) {
-        const msg = err instanceof Error ? err.message : "Unknown error";
+        let msg = "エラーが発生しました";
+        if (err instanceof TypeError && err.message.toLowerCase().includes("fetch")) {
+          msg = "バックエンドに接続できません。Dockerが起動しているか確認してください。";
+        } else if (err instanceof Error) {
+          msg = err.message;
+        }
         updateMessage(convId, aiMsgId, `エラー: ${msg}`);
         finalizeStreamingMessage(convId, aiMsgId);
       }
@@ -258,10 +301,8 @@ export default function ChatPage() {
     ]
   );
 
-  const isReady =
-    !isBrowserMode ||
-    llmStatus.phase === "ready" ||
-    llmStatus.phase === "idle";
+  // Only allow sending when model is actually ready (or not in browser mode)
+  const isReady = !isBrowserMode || llmStatus.phase === "ready";
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -269,7 +310,7 @@ export default function ChatPage() {
 
       <main className="flex-1 flex flex-col min-w-0 relative">
         {/* WebLLM loading overlay */}
-        <WebLLMLoader status={llmStatus} />
+        {isBrowserMode && <WebLLMLoader status={llmStatus} onLoad={handleLoadModel} />}
 
         {/* Header */}
         <header className="flex items-center gap-3 px-4 py-3 border-b border-gray-800">

@@ -29,8 +29,15 @@ export async function sendMessageStream(params: {
   });
 
   if (!response.ok) {
-    const error = await response.text();
-    params.onError(error);
+    let errorMsg = `サーバーエラー (${response.status})`;
+    try {
+      const text = await response.text();
+      const json = JSON.parse(text);
+      errorMsg = json.detail ?? json.message ?? json.error ?? text;
+    } catch {
+      // keep default message
+    }
+    params.onError(errorMsg);
     return;
   }
 
